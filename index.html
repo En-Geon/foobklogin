@@ -12,6 +12,10 @@
                     //statusChangeCallback(response);
                     if(response.status === 'connected'){
                         document.querySelector('#authBtn').value = 'Logout';
+                        FB.api('/me',function (resp) {
+                            document.querySelector('#name').innerHTML = resp.name;
+                        }
+                        );
                     } else {
                         document.querySelector('#authBtn').value = 'Login';
                     }
@@ -55,7 +59,7 @@
                     checkLoginStatus(res);
                 });
             }
-        ">
+        ">, <div id="name"></div>
         <header>     <!--간판과 같은 역할을 하는 정보의 태그-->
             <h1><a href ="#!welcome">JavaScript</a></h1>
         </header>
