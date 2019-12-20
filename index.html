@@ -13,7 +13,7 @@
                     if(response.status === 'connected'){
                         document.querySelector('#authBtn').value = 'Logout';
                         FB.api('/me',function (resp) {
-                            document.querySelector('#name').innerHTML = 'Wellcome ' + resp.name;
+                            document.querySelector('#name').innerHTML = 'Welcome ' + resp.name;
                         }
                         );
                     } else {
