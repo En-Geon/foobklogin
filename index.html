@@ -39,7 +39,19 @@
         </script>        
     </head>
     <body>
-        <input type="button" id="authBtn" value="checking...">
+        <input type="button" id="authBtn" value="checking..." onclick="
+            if(this.value === 'Login'){
+                // now Logout
+                FB.login(function(res){
+                    console.log('login =>', res);
+                });
+            } else {
+                // now Login
+                FB.logout(function(res){
+                    console.log('logout =>',res);
+                });
+            }
+        ">
         <header>     <!--간판과 같은 역할을 하는 정보의 태그-->
             <h1><a href ="#!welcome">JavaScript</a></h1>
         </header>
