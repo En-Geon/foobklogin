@@ -6,6 +6,16 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src = "colors.js"></script>
         <script>
+            
+            var checkLoginStatus = function(response){
+                    console.log(response);
+                    //statusChangeCallback(response);
+                    if(response.status === 'connected'){
+                        document.querySelector('#authBtn').value = 'Logout';
+                    } else {
+                        document.querySelector('#authBtn').value = 'Login';
+                    }
+                }
 
             window.fbAsyncInit = function() {
                 FB.init({
@@ -15,16 +25,8 @@
                   version    : 'v5.0'           // Use this Graph API version for this call.
                 });
             
-                var callback = function(response){
-                    console.log(response);
-                    //statusChangeCallback(response);
-                    if(response.status === 'connected'){
-                        document.querySelector('#authBtn').value = 'Logout';
-                    } else {
-                        document.querySelector('#authBtn').value = 'Login';
-                    }
-                }
-                FB.getLoginStatus(callback); /*{   // Called after the JS SDK has been initialized.
+                
+                FB.getLoginStatus(checkLoginStatus); /*{   // Called after the JS SDK has been initialized.
                           // Returns the login status.
                 });*/
             };
@@ -44,11 +46,13 @@
                 // now Logout
                 FB.login(function(res){
                     console.log('login =>', res);
+                    checkLoginStatus(res);
                 });
             } else {
                 // now Login
                 FB.logout(function(res){
                     console.log('logout =>',res);
+                    checkLoginStatus(res);
                 });
             }
         ">
